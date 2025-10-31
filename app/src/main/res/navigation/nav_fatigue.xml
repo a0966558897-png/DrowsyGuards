@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_fatigue"
+    app:startDestination="@id/cameraFragment">
+
+    <fragment
+        android:id="@+id/cameraFragment"
+        android:name="com.patrick.main.fragment.CameraFragment"
+        android:label="Camera" />
+
+    <dialog
+        android:id="@+id/moderateFatigueDialogFragment"
+        android:name="com.patrick.main.ui.ModerateFatigueDialogFragment"
+        android:label="中度疲勞警示" />
+
+    <dialog
+        android:id="@+id/severeFatigueDialogFragment"
+        android:name="com.patrick.main.ui.SevereFatigueDialogFragment"
+        android:label="重度疲勞警示" />
+
+    <dialog
+        android:id="@+id/restReminderDialogFragment"
+        android:name="com.patrick.main.ui.RestReminderDialogFragment"
+        android:label="休息提醒" />
+
+</navigation> 

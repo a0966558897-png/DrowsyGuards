@@ -1,0 +1,314 @@
+Reusing configuration cache.
+> Task :ui-components:loadKtlintReporters UP-TO-DATE
+> Task :ui-components:runKtlintCheckOverAndroidTestDebugSourceSet NO-SOURCE
+> Task :ui-components:ktlintAndroidTestDebugSourceSetCheck SKIPPED
+> Task :ui-components:runKtlintCheckOverAndroidTestReleaseSourceSet NO-SOURCE
+> Task :ui-components:ktlintAndroidTestReleaseSourceSetCheck SKIPPED
+> Task :account-auth:loadKtlintReporters UP-TO-DATE
+> Task :detection-logic:loadKtlintReporters UP-TO-DATE
+> Task :ui-components:runKtlintCheckOverAndroidTestSourceSet NO-SOURCE
+> Task :account-auth:runKtlintCheckOverAndroidTestReleaseSourceSet NO-SOURCE
+> Task :account-auth:runKtlintCheckOverAndroidTestDebugSourceSet NO-SOURCE
+> Task :shared-core:loadKtlintReporters UP-TO-DATE
+> Task :account-auth:ktlintAndroidTestDebugSourceSetCheck SKIPPED
+> Task :account-auth:ktlintAndroidTestReleaseSourceSetCheck SKIPPED
+> Task :account-auth:runKtlintCheckOverDebugSourceSet NO-SOURCE
+> Task :user-alert:loadKtlintReporters UP-TO-DATE
+> Task :account-auth:ktlintDebugSourceSetCheck SKIPPED
+> Task :account-auth:runKtlintCheckOverMainSourceSet NO-SOURCE
+> Task :user-settings:loadKtlintReporters UP-TO-DATE
+> Task :app:loadKtlintReporters UP-TO-DATE
+> Task :account-auth:ktlintMainSourceSetCheck SKIPPED
+> Task :account-auth:runKtlintCheckOverReleaseSourceSet NO-SOURCE
+> Task :account-auth:runKtlintCheckOverAndroidTestSourceSet UP-TO-DATE
+> Task :account-auth:runKtlintCheckOverTestFixturesDebugSourceSet NO-SOURCE
+> Task :account-auth:ktlintReleaseSourceSetCheck SKIPPED
+> Task :account-auth:runKtlintCheckOverKotlinScripts NO-SOURCE
+> Task :account-auth:ktlintKotlinScriptCheck SKIPPED
+> Task :camera-input:loadKtlintReporters UP-TO-DATE
+> Task :account-auth:runKtlintCheckOverTestDebugSourceSet NO-SOURCE
+> Task :account-auth:ktlintTestDebugSourceSetCheck SKIPPED
+> Task :account-auth:ktlintTestFixturesDebugSourceSetCheck SKIPPED
+> Task :account-auth:ktlintAndroidTestSourceSetCheck UP-TO-DATE
+> Task :account-auth:runKtlintCheckOverTestSourceSet UP-TO-DATE
+> Task :account-auth:runKtlintCheckOverTestFixturesReleaseSourceSet NO-SOURCE
+> Task :account-auth:ktlintTestFixturesReleaseSourceSetCheck SKIPPED
+> Task :account-auth:runKtlintCheckOverTestReleaseSourceSet NO-SOURCE
+> Task :account-auth:ktlintTestReleaseSourceSetCheck SKIPPED
+> Task :app:runKtlintCheckOverAndroidTestSourceSet UP-TO-DATE
+> Task :account-auth:runKtlintCheckOverTestFixturesSourceSet NO-SOURCE
+> Task :account-auth:ktlintTestFixturesSourceSetCheck SKIPPED
+> Task :app:runKtlintCheckOverAndroidTestDebugSourceSet NO-SOURCE
+> Task :app:ktlintAndroidTestDebugSourceSetCheck SKIPPED
+> Task :app:runKtlintCheckOverAndroidTestReleaseSourceSet NO-SOURCE
+> Task :account-auth:ktlintTestSourceSetCheck UP-TO-DATE
+> Task :app:ktlintAndroidTestReleaseSourceSetCheck SKIPPED
+> Task :account-auth:ktlintCheck UP-TO-DATE
+> Task :app:ktlintAndroidTestSourceSetCheck UP-TO-DATE
+> Task :app:runKtlintCheckOverDebugSourceSet NO-SOURCE
+> Task :app:ktlintDebugSourceSetCheck SKIPPED
+> Task :app:runKtlintCheckOverKotlinScripts NO-SOURCE
+> Task :app:runKtlintCheckOverReleaseSourceSet NO-SOURCE
+> Task :app:ktlintKotlinScriptCheck SKIPPED
+> Task :app:ktlintReleaseSourceSetCheck SKIPPED
+> Task :app:runKtlintCheckOverTestFixturesReleaseSourceSet NO-SOURCE
+> Task :app:runKtlintCheckOverTestFixturesDebugSourceSet NO-SOURCE
+> Task :app:ktlintTestFixturesReleaseSourceSetCheck SKIPPED
+> Task :app:ktlintTestFixturesDebugSourceSetCheck SKIPPED
+> Task :app:runKtlintCheckOverTestSourceSet UP-TO-DATE
+> Task :app:runKtlintCheckOverTestDebugSourceSet NO-SOURCE
+> Task :app:ktlintTestDebugSourceSetCheck SKIPPED
+> Task :app:ktlintTestSourceSetCheck UP-TO-DATE
+> Task :app:runKtlintCheckOverTestFixturesSourceSet NO-SOURCE
+> Task :camera-input:runKtlintCheckOverAndroidTestSourceSet UP-TO-DATE
+> Task :app:ktlintTestFixturesSourceSetCheck SKIPPED
+> Task :app:runKtlintCheckOverTestReleaseSourceSet NO-SOURCE
+> Task :app:ktlintTestReleaseSourceSetCheck SKIPPED
+> Task :camera-input:ktlintAndroidTestSourceSetCheck UP-TO-DATE
+> Task :camera-input:runKtlintCheckOverAndroidTestDebugSourceSet NO-SOURCE
+> Task :camera-input:ktlintAndroidTestDebugSourceSetCheck SKIPPED
+> Task :camera-input:runKtlintCheckOverDebugSourceSet NO-SOURCE
+> Task :camera-input:runKtlintCheckOverAndroidTestReleaseSourceSet NO-SOURCE
+> Task :camera-input:runKtlintCheckOverMainSourceSet UP-TO-DATE
+> Task :camera-input:ktlintDebugSourceSetCheck SKIPPED
+> Task :camera-input:runKtlintCheckOverKotlinScripts NO-SOURCE
+> Task :camera-input:ktlintKotlinScriptCheck SKIPPED
+> Task :camera-input:ktlintAndroidTestReleaseSourceSetCheck SKIPPED
+> Task :camera-input:runKtlintCheckOverTestDebugSourceSet NO-SOURCE
+> Task :camera-input:ktlintTestDebugSourceSetCheck SKIPPED
+> Task :camera-input:runKtlintCheckOverReleaseSourceSet NO-SOURCE
+> Task :camera-input:ktlintReleaseSourceSetCheck SKIPPED
+> Task :camera-input:runKtlintCheckOverTestSourceSet UP-TO-DATE
+> Task :camera-input:runKtlintCheckOverTestFixturesDebugSourceSet NO-SOURCE
+> Task :camera-input:ktlintTestFixturesDebugSourceSetCheck SKIPPED
+> Task :camera-input:ktlintTestSourceSetCheck UP-TO-DATE
+> Task :camera-input:runKtlintCheckOverTestFixturesReleaseSourceSet NO-SOURCE
+> Task :camera-input:ktlintTestFixturesReleaseSourceSetCheck SKIPPED
+> Task :camera-input:runKtlintCheckOverTestFixturesSourceSet NO-SOURCE
+> Task :camera-input:ktlintTestFixturesSourceSetCheck SKIPPED
+> Task :camera-input:runKtlintCheckOverTestReleaseSourceSet NO-SOURCE
+> Task :detection-logic:runKtlintCheckOverAndroidTestSourceSet UP-TO-DATE
+> Task :detection-logic:runKtlintCheckOverAndroidTestDebugSourceSet NO-SOURCE
+> Task :camera-input:ktlintTestReleaseSourceSetCheck SKIPPED
+> Task :detection-logic:ktlintAndroidTestSourceSetCheck UP-TO-DATE
+> Task :detection-logic:ktlintAndroidTestDebugSourceSetCheck SKIPPED
+> Task :detection-logic:runKtlintCheckOverAndroidTestReleaseSourceSet NO-SOURCE
+> Task :detection-logic:ktlintAndroidTestReleaseSourceSetCheck SKIPPED
+> Task :detection-logic:runKtlintCheckOverDebugSourceSet NO-SOURCE
+> Task :detection-logic:ktlintDebugSourceSetCheck SKIPPED
+> Task :detection-logic:runKtlintCheckOverMainSourceSet UP-TO-DATE
+> Task :detection-logic:runKtlintCheckOverKotlinScripts NO-SOURCE
+> Task :detection-logic:ktlintKotlinScriptCheck SKIPPED
+> Task :detection-logic:runKtlintCheckOverReleaseSourceSet NO-SOURCE
+> Task :detection-logic:ktlintReleaseSourceSetCheck SKIPPED
+> Task :detection-logic:runKtlintCheckOverTestDebugSourceSet NO-SOURCE
+> Task :detection-logic:ktlintTestDebugSourceSetCheck SKIPPED
+> Task :detection-logic:runKtlintCheckOverTestFixturesDebugSourceSet NO-SOURCE
+> Task :detection-logic:runKtlintCheckOverTestFixturesReleaseSourceSet NO-SOURCE
+> Task :detection-logic:ktlintTestFixturesReleaseSourceSetCheck SKIPPED
+> Task :detection-logic:ktlintTestFixturesDebugSourceSetCheck SKIPPED
+> Task :detection-logic:runKtlintCheckOverTestSourceSet UP-TO-DATE
+> Task :detection-logic:ktlintTestSourceSetCheck UP-TO-DATE
+> Task :detection-logic:runKtlintCheckOverTestFixturesSourceSet NO-SOURCE
+> Task :detection-logic:ktlintTestFixturesSourceSetCheck SKIPPED
+> Task :detection-logic:runKtlintCheckOverTestReleaseSourceSet NO-SOURCE
+> Task :shared-core:runKtlintCheckOverAndroidTestSourceSet UP-TO-DATE
+> Task :detection-logic:ktlintTestReleaseSourceSetCheck SKIPPED
+> Task :shared-core:runKtlintCheckOverAndroidTestDebugSourceSet NO-SOURCE
+> Task :shared-core:ktlintAndroidTestDebugSourceSetCheck SKIPPED
+> Task :shared-core:runKtlintCheckOverAndroidTestReleaseSourceSet NO-SOURCE
+> Task :shared-core:runKtlintCheckOverMainSourceSet UP-TO-DATE
+> Task :shared-core:ktlintAndroidTestReleaseSourceSetCheck SKIPPED
+> Task :shared-core:runKtlintCheckOverDebugSourceSet NO-SOURCE
+> Task :shared-core:ktlintAndroidTestSourceSetCheck UP-TO-DATE
+> Task :shared-core:runKtlintCheckOverKotlinScripts NO-SOURCE
+> Task :shared-core:ktlintMainSourceSetCheck UP-TO-DATE
+> Task :shared-core:ktlintKotlinScriptCheck SKIPPED
+> Task :shared-core:ktlintDebugSourceSetCheck SKIPPED
+> Task :shared-core:runKtlintCheckOverTestDebugSourceSet NO-SOURCE
+> Task :shared-core:ktlintTestDebugSourceSetCheck SKIPPED
+> Task :shared-core:runKtlintCheckOverTestFixturesDebugSourceSet NO-SOURCE
+> Task :shared-core:runKtlintCheckOverTestFixturesReleaseSourceSet NO-SOURCE
+> Task :shared-core:ktlintTestFixturesDebugSourceSetCheck SKIPPED
+> Task :shared-core:ktlintTestFixturesReleaseSourceSetCheck SKIPPED
+> Task :ui-components:ktlintAndroidTestSourceSetCheck SKIPPED
+> Task :shared-core:runKtlintCheckOverTestFixturesSourceSet NO-SOURCE
+> Task :shared-core:runKtlintCheckOverReleaseSourceSet NO-SOURCE
+> Task :shared-core:ktlintTestFixturesSourceSetCheck SKIPPED
+> Task :shared-core:ktlintReleaseSourceSetCheck SKIPPED
+> Task :shared-core:runKtlintCheckOverTestReleaseSourceSet NO-SOURCE
+> Task :shared-core:ktlintTestReleaseSourceSetCheck SKIPPED
+> Task :ui-components:runKtlintCheckOverDebugSourceSet NO-SOURCE
+> Task :ui-components:ktlintDebugSourceSetCheck SKIPPED
+> Task :ui-components:runKtlintCheckOverKotlinScripts NO-SOURCE
+> Task :ui-components:runKtlintCheckOverReleaseSourceSet NO-SOURCE
+> Task :ui-components:ktlintReleaseSourceSetCheck SKIPPED
+> Task :ui-components:ktlintKotlinScriptCheck SKIPPED
+> Task :ui-components:runKtlintCheckOverTestFixturesDebugSourceSet NO-SOURCE
+> Task :ui-components:ktlintTestFixturesDebugSourceSetCheck SKIPPED
+> Task :ui-components:runKtlintCheckOverTestFixturesReleaseSourceSet NO-SOURCE
+> Task :ui-components:ktlintTestFixturesReleaseSourceSetCheck SKIPPED
+> Task :ui-components:runKtlintCheckOverTestReleaseSourceSet NO-SOURCE
+> Task :ui-components:ktlintTestReleaseSourceSetCheck SKIPPED
+> Task :ui-components:runKtlintCheckOverTestSourceSet NO-SOURCE
+> Task :ui-components:ktlintTestSourceSetCheck SKIPPED
+> Task :shared-core:runKtlintCheckOverTestSourceSet UP-TO-DATE
+> Task :user-alert:runKtlintCheckOverAndroidTestDebugSourceSet NO-SOURCE
+> Task :user-alert:ktlintAndroidTestDebugSourceSetCheck SKIPPED
+> Task :ui-components:runKtlintCheckOverMainSourceSet UP-TO-DATE
+> Task :ui-components:runKtlintCheckOverTestDebugSourceSet NO-SOURCE
+> Task :ui-components:ktlintTestDebugSourceSetCheck SKIPPED
+> Task :shared-core:ktlintTestSourceSetCheck UP-TO-DATE
+> Task :shared-core:ktlintCheck UP-TO-DATE
+> Task :ui-components:runKtlintCheckOverTestFixturesSourceSet NO-SOURCE
+> Task :ui-components:ktlintTestFixturesSourceSetCheck SKIPPED
+> Task :user-alert:runKtlintCheckOverAndroidTestSourceSet UP-TO-DATE
+> Task :user-alert:runKtlintCheckOverAndroidTestReleaseSourceSet NO-SOURCE
+> Task :user-alert:runKtlintCheckOverDebugSourceSet NO-SOURCE
+> Task :user-alert:runKtlintCheckOverKotlinScripts NO-SOURCE
+> Task :user-alert:ktlintKotlinScriptCheck SKIPPED
+> Task :user-alert:ktlintAndroidTestReleaseSourceSetCheck SKIPPED
+> Task :user-alert:runKtlintCheckOverReleaseSourceSet NO-SOURCE
+> Task :user-alert:ktlintReleaseSourceSetCheck SKIPPED
+> Task :user-alert:ktlintDebugSourceSetCheck SKIPPED
+> Task :user-alert:runKtlintCheckOverTestDebugSourceSet NO-SOURCE
+> Task :user-alert:ktlintAndroidTestSourceSetCheck UP-TO-DATE
+> Task :user-alert:ktlintTestDebugSourceSetCheck SKIPPED
+> Task :user-alert:runKtlintCheckOverTestFixturesDebugSourceSet NO-SOURCE
+> Task :user-alert:runKtlintCheckOverTestFixturesReleaseSourceSet NO-SOURCE
+> Task :user-alert:ktlintTestFixturesDebugSourceSetCheck SKIPPED
+> Task :user-alert:ktlintTestFixturesReleaseSourceSetCheck SKIPPED
+> Task :user-alert:runKtlintCheckOverTestFixturesSourceSet NO-SOURCE
+> Task :user-alert:ktlintTestFixturesSourceSetCheck SKIPPED
+> Task :user-alert:runKtlintCheckOverTestReleaseSourceSet NO-SOURCE
+> Task :user-alert:runKtlintCheckOverTestSourceSet UP-TO-DATE
+> Task :user-alert:ktlintTestReleaseSourceSetCheck SKIPPED
+> Task :user-alert:ktlintTestSourceSetCheck UP-TO-DATE
+> Task :user-settings:runKtlintCheckOverAndroidTestDebugSourceSet NO-SOURCE
+> Task :user-settings:ktlintAndroidTestDebugSourceSetCheck SKIPPED
+> Task :user-settings:runKtlintCheckOverAndroidTestReleaseSourceSet NO-SOURCE
+> Task :user-settings:ktlintAndroidTestReleaseSourceSetCheck SKIPPED
+> Task :user-settings:runKtlintCheckOverDebugSourceSet NO-SOURCE
+> Task :user-settings:ktlintDebugSourceSetCheck SKIPPED
+> Task :user-settings:runKtlintCheckOverAndroidTestSourceSet UP-TO-DATE
+> Task :user-settings:runKtlintCheckOverKotlinScripts NO-SOURCE
+> Task :user-settings:ktlintKotlinScriptCheck SKIPPED
+> Task :user-settings:runKtlintCheckOverMainSourceSet NO-SOURCE
+> Task :user-settings:ktlintAndroidTestSourceSetCheck UP-TO-DATE
+> Task :user-settings:ktlintMainSourceSetCheck SKIPPED
+> Task :user-settings:runKtlintCheckOverTestDebugSourceSet NO-SOURCE
+> Task :user-settings:ktlintTestDebugSourceSetCheck SKIPPED
+> Task :user-settings:runKtlintCheckOverReleaseSourceSet NO-SOURCE
+> Task :user-settings:ktlintReleaseSourceSetCheck SKIPPED
+> Task :user-settings:runKtlintCheckOverTestFixturesDebugSourceSet NO-SOURCE
+> Task :user-settings:ktlintTestFixturesDebugSourceSetCheck SKIPPED
+> Task :user-settings:runKtlintCheckOverTestFixturesReleaseSourceSet NO-SOURCE
+> Task :user-settings:ktlintTestFixturesReleaseSourceSetCheck SKIPPED
+> Task :user-settings:runKtlintCheckOverTestFixturesSourceSet NO-SOURCE
+> Task :user-settings:ktlintTestFixturesSourceSetCheck SKIPPED
+> Task :user-settings:runKtlintCheckOverTestSourceSet UP-TO-DATE
+> Task :user-settings:runKtlintCheckOverTestReleaseSourceSet NO-SOURCE
+> Task :user-settings:ktlintTestReleaseSourceSetCheck SKIPPED
+> Task :user-settings:ktlintTestSourceSetCheck UP-TO-DATE
+> Task :user-settings:ktlintCheck UP-TO-DATE
+
+> Task :detection-logic:ktlintMainSourceSetCheck FAILED
+/Users/xuzhehao/AndroidStudioProjects/DrowsyGuard/detection-logic/src/main/java/com/patrick/detection/FatigueDetector.kt:309:17 Property name should start with a lowercase letter and use camel case (cannot be auto-corrected) (standard:property-naming)
+/Users/xuzhehao/AndroidStudioProjects/DrowsyGuard/detection-logic/src/main/java/com/patrick/detection/FatigueDetector.kt:310:17 Property name should start with a lowercase letter and use camel case (cannot be auto-corrected) (standard:property-naming)
+/Users/xuzhehao/AndroidStudioProjects/DrowsyGuard/detection-logic/src/main/java/com/patrick/detection/FatigueDetector.kt:311:17 Property name should start with a lowercase letter and use camel case (cannot be auto-corrected) (standard:property-naming)
+/Users/xuzhehao/AndroidStudioProjects/DrowsyGuard/detection-logic/src/main/java/com/patrick/detection/FatigueDetector.kt:340:13 Property name should start with a lowercase letter and use camel case (cannot be auto-corrected) (standard:property-naming)
+/Users/xuzhehao/AndroidStudioProjects/DrowsyGuard/detection-logic/src/main/java/com/patrick/detection/FatigueDetector.kt:341:13 Property name should start with a lowercase letter and use camel case (cannot be auto-corrected) (standard:property-naming)
+/Users/xuzhehao/AndroidStudioProjects/DrowsyGuard/detection-logic/src/main/java/com/patrick/detection/FatigueDetector.kt:342:13 Property name should start with a lowercase letter and use camel case (cannot be auto-corrected) (standard:property-naming)
+
+> Task :camera-input:ktlintMainSourceSetCheck FAILED
+/Users/xuzhehao/AndroidStudioProjects/DrowsyGuard/camera-input/src/main/java/com/patrick/camera/CameraController.kt:180:1 Exceeded max line length (140) (cannot be auto-corrected) (standard:max-line-length)
+/Users/xuzhehao/AndroidStudioProjects/DrowsyGuard/camera-input/src/main/java/com/patrick/camera/CameraController.kt:197:1 Exceeded max line length (140) (cannot be auto-corrected) (standard:max-line-length)
+/Users/xuzhehao/AndroidStudioProjects/DrowsyGuard/camera-input/src/main/java/com/patrick/camera/CameraController.kt:204:1 Exceeded max line length (140) (cannot be auto-corrected) (standard:max-line-length)
+/Users/xuzhehao/AndroidStudioProjects/DrowsyGuard/camera-input/src/main/java/com/patrick/camera/CameraPreviewComposable.kt:11:5 Function name should start with a lowercase letter (except factory methods) and use camel case (cannot be auto-corrected) (standard:function-naming)
+/Users/xuzhehao/AndroidStudioProjects/DrowsyGuard/camera-input/src/main/java/com/patrick/camera/CameraRepositoryImpl.kt:28:17 Property name should start with a lowercase letter and use camel case (cannot be auto-corrected) (standard:property-naming)
+/Users/xuzhehao/AndroidStudioProjects/DrowsyGuard/camera-input/src/main/java/com/patrick/camera/CameraRepositoryImpl.kt:29:17 Property name should start with a lowercase letter and use camel case (cannot be auto-corrected) (standard:property-naming)
+/Users/xuzhehao/AndroidStudioProjects/DrowsyGuard/camera-input/src/main/java/com/patrick/camera/CameraRepositoryImpl.kt:31:17 Property name should start with a lowercase letter and use camel case (cannot be auto-corrected) (standard:property-naming)
+/Users/xuzhehao/AndroidStudioProjects/DrowsyGuard/camera-input/src/main/java/com/patrick/camera/CameraRepositoryImpl.kt:32:17 Property name should start with a lowercase letter and use camel case (cannot be auto-corrected) (standard:property-naming)
+/Users/xuzhehao/AndroidStudioProjects/DrowsyGuard/camera-input/src/main/java/com/patrick/camera/CameraRepositoryImpl.kt:49:1 Exceeded max line length (140) (cannot be auto-corrected) (standard:max-line-length)
+
+> Task :ui-components:ktlintMainSourceSetCheck FAILED
+/Users/xuzhehao/AndroidStudioProjects/DrowsyGuard/ui-components/src/main/java/com/patrick/ui/camera/CameraOverlay.kt:25:5 Function name should start with a lowercase letter (except factory methods) and use camel case (cannot be auto-corrected) (standard:function-naming)
+/Users/xuzhehao/AndroidStudioProjects/DrowsyGuard/ui-components/src/main/java/com/patrick/ui/camera/CameraOverlay.kt:55:5 Function name should start with a lowercase letter (except factory methods) and use camel case (cannot be auto-corrected) (standard:function-naming)
+/Users/xuzhehao/AndroidStudioProjects/DrowsyGuard/ui-components/src/main/java/com/patrick/ui/camera/CameraPermissionRequest.kt:27:5 Function name should start with a lowercase letter (except factory methods) and use camel case (cannot be auto-corrected) (standard:function-naming)
+/Users/xuzhehao/AndroidStudioProjects/DrowsyGuard/ui-components/src/main/java/com/patrick/ui/camera/CameraPreview.kt:15:5 Function name should start with a lowercase letter (except factory methods) and use camel case (cannot be auto-corrected) (standard:function-naming)
+/Users/xuzhehao/AndroidStudioProjects/DrowsyGuard/ui-components/src/main/java/com/patrick/ui/common/DrowsyGuardButton.kt:25:5 Function name should start with a lowercase letter (except factory methods) and use camel case (cannot be auto-corrected) (standard:function-naming)
+/Users/xuzhehao/AndroidStudioProjects/DrowsyGuard/ui-components/src/main/java/com/patrick/ui/common/DrowsyGuardButton.kt:61:5 Function name should start with a lowercase letter (except factory methods) and use camel case (cannot be auto-corrected) (standard:function-naming)
+/Users/xuzhehao/AndroidStudioProjects/DrowsyGuard/ui-components/src/main/java/com/patrick/ui/common/DrowsyGuardButton.kt:88:5 Function name should start with a lowercase letter (except factory methods) and use camel case (cannot be auto-corrected) (standard:function-naming)
+/Users/xuzhehao/AndroidStudioProjects/DrowsyGuard/ui-components/src/main/java/com/patrick/ui/common/DrowsyGuardDialog.kt:32:5 Function name should start with a lowercase letter (except factory methods) and use camel case (cannot be auto-corrected) (standard:function-naming)
+/Users/xuzhehao/AndroidStudioProjects/DrowsyGuard/ui-components/src/main/java/com/patrick/ui/common/DrowsyGuardDialog.kt:96:5 Function name should start with a lowercase letter (except factory methods) and use camel case (cannot be auto-corrected) (standard:function-naming)
+/Users/xuzhehao/AndroidStudioProjects/DrowsyGuard/ui-components/src/main/java/com/patrick/ui/common/DrowsyGuardProgressBar.kt:27:5 Function name should start with a lowercase letter (except factory methods) and use camel case (cannot be auto-corrected) (standard:function-naming)
+/Users/xuzhehao/AndroidStudioProjects/DrowsyGuard/ui-components/src/main/java/com/patrick/ui/common/DrowsyGuardProgressBar.kt:70:5 Function name should start with a lowercase letter (except factory methods) and use camel case (cannot be auto-corrected) (standard:function-naming)
+/Users/xuzhehao/AndroidStudioProjects/DrowsyGuard/ui-components/src/main/java/com/patrick/ui/common/DrowsyGuardProgressBar.kt:93:5 Function name should start with a lowercase letter (except factory methods) and use camel case (cannot be auto-corrected) (standard:function-naming)
+/Users/xuzhehao/AndroidStudioProjects/DrowsyGuard/ui-components/src/main/java/com/patrick/ui/common/DrowsyGuardTheme.kt:15:1 a KDoc may not be preceded by a KDoc (cannot be auto-corrected) (standard:no-consecutive-comments)
+/Users/xuzhehao/AndroidStudioProjects/DrowsyGuard/ui-components/src/main/java/com/patrick/ui/common/DrowsyGuardTheme.kt:72:5 Function name should start with a lowercase letter (except factory methods) and use camel case (cannot be auto-corrected) (standard:function-naming)
+/Users/xuzhehao/AndroidStudioProjects/DrowsyGuard/ui-components/src/main/java/com/patrick/ui/common/DrowsyGuardTopAppBar.kt:25:5 Function name should start with a lowercase letter (except factory methods) and use camel case (cannot be auto-corrected) (standard:function-naming)
+/Users/xuzhehao/AndroidStudioProjects/DrowsyGuard/ui-components/src/main/java/com/patrick/ui/fatigue/FatigueAlertDialog.kt:17:5 Function name should start with a lowercase letter (except factory methods) and use camel case (cannot be auto-corrected) (standard:function-naming)
+/Users/xuzhehao/AndroidStudioProjects/DrowsyGuard/ui-components/src/main/java/com/patrick/ui/fatigue/FatigueCalibrationOverlay.kt:25:5 Function name should start with a lowercase letter (except factory methods) and use camel case (cannot be auto-corrected) (standard:function-naming)
+/Users/xuzhehao/AndroidStudioProjects/DrowsyGuard/ui-components/src/main/java/com/patrick/ui/fatigue/FatigueLevelIndicator.kt:29:5 Function name should start with a lowercase letter (except factory methods) and use camel case (cannot be auto-corrected) (standard:function-naming)
+/Users/xuzhehao/AndroidStudioProjects/DrowsyGuard/ui-components/src/main/java/com/patrick/ui/fatigue/FatigueLevelIndicator.kt:74:5 Function name should start with a lowercase letter (except factory methods) and use camel case (cannot be auto-corrected) (standard:function-naming)
+/Users/xuzhehao/AndroidStudioProjects/DrowsyGuard/ui-components/src/main/java/com/patrick/ui/fatigue/FatigueStatusBar.kt:17:5 Function name should start with a lowercase letter (except factory methods) and use camel case (cannot be auto-corrected) (standard:function-naming)
+/Users/xuzhehao/AndroidStudioProjects/DrowsyGuard/ui-components/src/main/java/com/patrick/ui/navigation/DrowsyGuardDrawer.kt:23:5 Function name should start with a lowercase letter (except factory methods) and use camel case (cannot be auto-corrected) (standard:function-naming)
+/Users/xuzhehao/AndroidStudioProjects/DrowsyGuard/ui-components/src/main/java/com/patrick/ui/navigation/DrowsyGuardDrawer.kt:62:13 Function name should start with a lowercase letter (except factory methods) and use camel case (cannot be auto-corrected) (standard:function-naming)
+/Users/xuzhehao/AndroidStudioProjects/DrowsyGuard/ui-components/src/main/java/com/patrick/ui/navigation/DrowsyGuardNavigationItem.kt:20:5 Function name should start with a lowercase letter (except factory methods) and use camel case (cannot be auto-corrected) (standard:function-naming)
+
+> Task :user-alert:runKtlintCheckOverMainSourceSet
+> Task :app:runKtlintCheckOverMainSourceSet
+
+FAILURE: Build completed with 3 failures.
+
+1: Task failed with an exception.
+-----------
+* What went wrong:
+Execution failed for task ':detection-logic:ktlintMainSourceSetCheck'.
+> A failure occurred while executing org.jlleitschuh.gradle.ktlint.worker.ConsoleReportWorkAction
+   > KtLint found code style violations. Please see the following reports:
+     - /Users/xuzhehao/AndroidStudioProjects/DrowsyGuard/detection-logic/build/reports/ktlint/ktlintMainSourceSetCheck/ktlintMainSourceSetCheck.html
+     - /Users/xuzhehao/AndroidStudioProjects/DrowsyGuard/detection-logic/build/reports/ktlint/ktlintMainSourceSetCheck/ktlintMainSourceSetCheck.json
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+==============================================================================
+
+2: Task failed with an exception.
+-----------
+* What went wrong:
+Execution failed for task ':camera-input:ktlintMainSourceSetCheck'.
+> A failure occurred while executing org.jlleitschuh.gradle.ktlint.worker.ConsoleReportWorkAction
+   > KtLint found code style violations. Please see the following reports:
+     - /Users/xuzhehao/AndroidStudioProjects/DrowsyGuard/camera-input/build/reports/ktlint/ktlintMainSourceSetCheck/ktlintMainSourceSetCheck.html
+     - /Users/xuzhehao/AndroidStudioProjects/DrowsyGuard/camera-input/build/reports/ktlint/ktlintMainSourceSetCheck/ktlintMainSourceSetCheck.json
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+==============================================================================
+
+3: Task failed with an exception.
+-----------
+* What went wrong:
+Execution failed for task ':ui-components:ktlintMainSourceSetCheck'.
+> A failure occurred while executing org.jlleitschuh.gradle.ktlint.worker.ConsoleReportWorkAction
+   > KtLint found code style violations. Please see the following reports:
+     - /Users/xuzhehao/AndroidStudioProjects/DrowsyGuard/ui-components/build/reports/ktlint/ktlintMainSourceSetCheck/ktlintMainSourceSetCheck.html
+     - /Users/xuzhehao/AndroidStudioProjects/DrowsyGuard/ui-components/build/reports/ktlint/ktlintMainSourceSetCheck/ktlintMainSourceSetCheck.json
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+==============================================================================
+
+BUILD FAILED in 2s
+46 actionable tasks: 5 executed, 41 up-to-date
+Configuration cache entry reused.

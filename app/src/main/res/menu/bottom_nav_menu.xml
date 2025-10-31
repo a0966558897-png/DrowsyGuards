@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_detect"
+        android:icon="@drawable/ic_detection"
+        android:title="偵測" />
+
+    <!-- 歷史：先隱藏，避免和偵測頁底部的內嵌歷史重複 -->
+    <item
+        android:id="@+id/nav_history"
+        android:icon="@drawable/ic_history"
+        android:title="紀錄"
+        android:visible="false" />
+
+    <item
+        android:id="@+id/nav_chart"
+        android:icon="@drawable/ic_settings"
+        android:title="圖表" />
+
+    <item
+        android:id="@+id/nav_settings"
+        android:icon="@drawable/ic_settings"
+        android:title="設定" />
+</menu>

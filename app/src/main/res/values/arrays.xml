@@ -1,0 +1,8 @@
+<resources>
+    <string-array name="delegate_spinner_titles">
+        <item>自動</item>
+        <item>CPU</item>
+        <item>GPU</item>
+        <item>NNAPI</item>
+    </string-array>
+</resources>

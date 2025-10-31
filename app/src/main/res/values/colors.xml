@@ -1,0 +1,42 @@
+<resources>
+    <!-- 鈦色主色系（保留作為點綴） -->
+    <color name="metalTitaniumGray">#3B3C3F</color>
+    <color name="titaniumBlueGray">#5A6372</color>
+    <color name="silverGray">#A6A9AD</color>
+    <color name="softWhite">#FAFAFA</color>
+    <color name="grayHint">#B0B3B8</color>
+
+    <!-- 額外輔助顏色 -->
+    <color name="accentGreen">#81C784</color>
+    <color name="accentRed">#E57373</color>
+    <color name="accentYellow">#FFEB3B</color>
+
+    <!-- 舊代碼需要的別名 -->
+    <color name="primaryBlue">#5A6372</color> <!-- 實際顏色仍為鈦藍灰 -->
+
+    <!-- 通用（調整為淺色系） -->
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="transparent">#00000000</color>
+    <color name="bgLightGray">#F5F5F5</color> <!-- ✅ 預設背景：淺灰 -->
+    <color name="textDark">#212121</color>     <!-- ✅ 深字體 -->
+    <color name="textLight">#757575</color>    <!-- ✅ 淺字體 -->
+
+    <!-- 移除系統黑色背景，保留作特殊用途 -->
+    <color name="backgroundDark">#F5F5F5</color> <!-- ❌ 原黑色 → 改為淺灰 -->
+    <color name="backgroundSoftGray">#EEEEEE</color> <!-- ❌ 原深灰 → 改為更亮 -->
+
+    <!-- 其他 -->
+    <color name="titleGray">#333333</color> <!-- 標題文字：深灰 -->
+    <color name="inputStrokeGray">#8C8C8C</color>
+    <color name="metalBackground">#F5F5F5</color> <!-- ❌ 原黑色背景 → 改淺灰 -->
+    <color name="metalCard">#FFFFFF</color>       <!-- 卡片背景 → 白 -->
+    <color name="metalAccent">#5A6372</color>    <!-- 鈦藍灰點綴 -->
+    <color name="textPrimary">#212121</color>    <!-- 主要文字深色 -->
+    <color name="textSecondary">#757575</color>  <!-- 次要文字淺色 -->
+
+    <!-- 新增：MediaPipe/BottomSheet 需要 -->
+    <color name="mp_color_primary">#FF6200EE</color>
+    <color name="bottom_sheet_text_color">#CCFFFFFF</color>
+    <color name="bottom_sheet_background">#B3000000</color>
+</resources>

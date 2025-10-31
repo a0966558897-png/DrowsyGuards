@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Drivesafe</string>
+
+    <!-- MediaPipe / BottomSheet -->
+    <string name="tv_gallery_placeholder">尚無相片</string>
+    <string name="alt_bottom_sheet_chevron">展開/收合</string>
+    <string name="label_inference_time">推論時間</string>
+    <string name="label_face_detection_confidence_threshold">臉部偵測信心門檻</string>
+    <string name="alt_bottom_sheet_threshold_button_minus">降低門檻</string>
+    <string name="alt_bottom_sheet_threshold_button_plus">提高門檻</string>
+    <string name="label_face_tracking_confidence_threshold">臉部追蹤信心門檻</string>
+
+    <!-- 這次缺的 -->
+    <string name="label_face_presence_confidence_threshold">臉部存在信心門檻</string>
+    <string name="label_num_faces">偵測人數</string>
+    <string name="alt_bottom_sheet_max_results_button_minus">減少最大數量</string>
+    <string name="alt_bottom_sheet_max_results_button_plus">增加最大數量</string>
+    <string name="label_delegate">推論裝置</string>
+    <string name="nav_open">開啟選單</string>
+    <string name="nav_close">關閉選單</string>
+
+    <!-- BottomNav -->
+    <string name="menu_camera">相機</string>
+    <string name="menu_gallery">相簿</string>
+</resources>

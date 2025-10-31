@@ -1,0 +1,55 @@
+// 性能優化配置
+ext {
+    // 性能配置
+    performanceConfig = [
+        // 內存優化
+        memory: [
+            enableLeakCanary: false, // 生產環境關閉
+            enableStrictMode: true,
+            heapSize: "512m",
+            enableMemoryProfiling: true
+        ],
+        
+        // CPU 優化
+        cpu: [
+            enableProfiling: true,
+            enableTraceView: true,
+            enableMethodTracing: false
+        ],
+        
+        // 電池優化
+        battery: [
+            enableBatteryOptimization: true,
+            enableDozeMode: true,
+            enableAppStandby: true
+        ],
+        
+        // 啟動優化
+        startup: [
+            enableStartupOptimization: true,
+            enableLazyInitialization: true,
+            enableBackgroundInitialization: true
+        ]
+    ]
+}
+
+// 性能監控依賴
+dependencies {
+    // 內存洩漏檢測 (僅 debug)
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.12'
+    
+    // 性能監控
+    implementation 'com.facebook.device.yearclass:yearclass:2.1.0'
+    implementation 'com.facebook.flipper:flipper-network-plugin:0.182.0'
+    implementation 'com.facebook.flipper:flipper-perf-plugin:0.182.0'
+    
+    // 啟動優化
+    implementation 'androidx.startup:startup-runtime:1.1.1'
+    
+    // 異步處理
+    implementation 'androidx.work:work-runtime-ktx:2.9.0'
+    
+    // 圖片優化
+    implementation 'com.github.bumptech.glide:glide:4.16.0'
+    kapt 'com.github.bumptech.glide:compiler:4.16.0'
+} 

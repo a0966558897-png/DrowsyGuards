@@ -1,0 +1,55 @@
+// 測試框架配置
+ext {
+    // 測試配置
+    testConfig = [
+        // 單元測試配置
+        unitTest: [
+            enabled: true,
+            coverage: 80,
+            timeout: 30
+        ],
+        
+        // 集成測試配置
+        integrationTest: [
+            enabled: true,
+            coverage: 70,
+            timeout: 60
+        ],
+        
+        // UI 測試配置
+        uiTest: [
+            enabled: true,
+            coverage: 60,
+            timeout: 120
+        ]
+    ]
+}
+
+// 測試任務配置
+android {
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+            returnDefaultValues = true
+        }
+        
+        execution 'ANDROIDX_TEST_ORCHESTRATOR'
+    }
+}
+
+// 測試依賴配置
+dependencies {
+    // 單元測試
+    testImplementation libs.junit
+    testImplementation libs.mockk
+    testImplementation libs.turbine
+    testImplementation libs.coroutines.test
+    
+    // Android 測試
+    androidTestImplementation libs.androidx.test.ext
+    androidTestImplementation libs.espresso
+    androidTestImplementation libs.androidx.compose.ui.test.junit4
+    
+    // 測試工具
+    debugImplementation libs.androidx.compose.ui.test.manifest
+} 

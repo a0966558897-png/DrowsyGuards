@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginVertical="8dp"
+    android:clickable="true"
+    android:focusable="true"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="16dp"
+    app:cardUseCompatPadding="true"
+    app:rippleColor="@color/inputStrokeGray"
+    app:strokeColor="@color/inputStrokeGray"
+    app:strokeWidth="1dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="14dp">
+
+        <!-- 分數 -->
+        <TextView
+            android:id="@+id/tvScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/textDark"
+            android:textStyle="bold"
+            android:textSize="24sp"
+            tools:text="8.0 分"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- 等級（安全/注意/警示） -->
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipLevel"
+            style="@style/Widget.Material3.Chip.Assist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textAllCaps="false"
+            app:chipIconVisible="false"
+            tools:text="注意"
+            app:layout_constraintStart_toEndOf="@id/tvScore"
+            app:layout_constraintTop_toTopOf="@id/tvScore"
+            app:layout_constraintBottom_toBottomOf="@id/tvScore"/>
+
+        <!-- 同步狀態（右上角） -->
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipSync"
+            style="@style/Widget.Material3.Chip.Assist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            app:chipIconVisible="false"
+            tools:text="已上傳"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <!-- 時間 -->
+        <TextView
+            android:id="@+id/tvTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:textColor="@color/textDark"
+            android:alpha="0.9"
+            android:textSize="13sp"
+            tools:text="2025/09/29 16:00"
+            app:layout_constraintStart_toStartOf="@id/tvScore"
+            app:layout_constraintTop_toBottomOf="@id/tvScore"
+            app:layout_constraintEnd_toStartOf="@id/chipSync" />
+
+        <!-- 摘要指標列（有資料才顯示） -->
+        <LinearLayout
+            android:id="@+id/rowMetrics"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@id/tvTime"
+            app:layout_constraintTop_toBottomOf="@id/tvTime"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:id="@+id/tvBlinks"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textLight"
+                android:textSize="12sp"
+                tools:text="眨眼 12"/>
+
+            <TextView
+                android:id="@+id/tvYawns"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:textColor="@color/textLight"
+                android:textSize="12sp"
+                tools:text="哈欠 2" />
+
+            <TextView
+                android:id="@+id/tvEyesClosed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:textColor="@color/textLight"
+                android:textSize="12sp"
+                tools:text="閉眼 0.9s" />
+
+            <TextView
+                android:id="@+id/tvPerclos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:textColor="@color/textLight"
+                android:textSize="12sp"
+                tools:text="PERCLOS 8%" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

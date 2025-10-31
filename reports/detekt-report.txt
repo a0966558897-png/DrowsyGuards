@@ -1,0 +1,13 @@
+Reusing configuration cache.
+> Task :user-alert:detekt UP-TO-DATE
+> Task :camera-input:detekt UP-TO-DATE
+> Task :app:detekt UP-TO-DATE
+> Task :ui-components:detekt UP-TO-DATE
+> Task :detection-logic:detekt UP-TO-DATE
+> Task :shared-core:detekt UP-TO-DATE
+> Task :user-settings:detekt UP-TO-DATE
+> Task :account-auth:detekt UP-TO-DATE
+
+BUILD SUCCESSFUL in 424ms
+8 actionable tasks: 8 up-to-date
+Configuration cache entry reused.

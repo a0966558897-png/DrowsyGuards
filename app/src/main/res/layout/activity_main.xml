@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <!-- 主內容區：上方Toolbar + 你的原本偵測畫面 -->
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:title="疲勞偵測"
+            app:titleCentered="true"
+            app:navigationIconTint="@android:color/white"
+            app:titleTextColor="@android:color/white" />
+
+        <!-- 把你原本的內容（預覽、數值、按鈕...）放到這個容器中 -->
+        <FrameLayout
+            android:id="@+id/content_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="?attr/actionBarSize">
+
+            <!-- 方式A：直接把你舊的根布局整坨複製進來 -->
+            <!-- 方式B：如果你原本有一個 content_detection.xml，就用 include -->
+            <!-- <include layout="@layout/content_detection" /> -->
+
+        </FrameLayout>
+
+        <!-- 👇👇👇 重要：把原本底部的 BottomNavigationView 整段刪掉或註解掉！ -->
+        <!-- <com.google.android.material.bottomnavigation.BottomNavigationView ... /> -->
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <!-- 左側抽屜選單 -->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigation_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:menu="@menu/menu_main_drawer" />
+
+</androidx.drawerlayout.widget.DrawerLayout>

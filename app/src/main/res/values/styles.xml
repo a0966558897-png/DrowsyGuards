@@ -1,0 +1,20 @@
+<resources>
+    <!-- 已有 -->
+    <style name="AppToolbar.Light" parent="ThemeOverlay.Material3.ActionBar">
+        <item name="android:background">@color/white</item>
+        <item name="titleTextColor">@color/textDark</item>
+        <item name="android:elevation">4dp</item>
+    </style>
+
+    <!-- ProgressBar 樣式（給 fragment_gallery.xml） -->
+    <style name="AppThemeProgressStyle" parent="@android:style/Widget.ProgressBar.Horizontal">
+        <item name="android:indeterminate">true</item>
+        <item name="android:progressDrawable">@android:drawable/progress_horizontal</item>
+    </style>
+
+    <!-- Spinner 文字樣式（給 info_bottom_sheet.xml） -->
+    <style name="BottomSheetSpinnerItemStyle" parent="TextAppearance.Material3.BodyMedium">
+        <item name="android:textColor">@color/bottom_sheet_text_color</item>
+        <item name="android:padding">8dp</item>
+    </style>
+</resources>
