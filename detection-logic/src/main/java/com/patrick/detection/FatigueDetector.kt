@@ -56,6 +56,10 @@ class FatigueDetector(private val context: Context) {
     // 眨眼時間戳（用於 Recent 計數）
     private val blinkTimestamps = mutableListOf<Long>()
 
+    // ★ 嘴巴張開次數與時間戳
+    private var mouthOpenCount = 0
+    private val mouthOpenTimestamps = mutableListOf<Long>()
+
     // 狀態旗標
     private var isEyeClosed = false
     private var isMouthOpen = false
@@ -116,7 +120,7 @@ class FatigueDetector(private val context: Context) {
             fatigueEvents.add(it)
         }
 
-        // 打哈欠
+        // 打哈欠 / 嘴巴張開
         detectYawn(landmarks, now)?.let {
             events.add(it)
             fatigueEvents.add(it)
@@ -158,7 +162,7 @@ class FatigueDetector(private val context: Context) {
             // 眼睛閉合超過門檻 → 直接警告
             events.any { it is FatigueEvent.EyeClosure } -> currentFatigueEventThreshold
 
-            // 打哈欠：1 次提醒、2 次警告
+            // 打哈欠：1 次提醒、2 次警告（這裡的 yawnCount 會被 detectYawn 更新）
             yawnCount >= 2 -> currentFatigueEventThreshold
             yawnCount >= 1 -> 1
 
@@ -178,7 +182,7 @@ class FatigueDetector(private val context: Context) {
             if (isFaceDetected && now - lastFaceDetectionTime > faceDetectionTolerance) {
                 // 允許短暫沒臉；超過容忍才標記為沒臉
                 isFaceDetected = false
-                // **不要**在這裡 stopCalibration()，避免校正畫面突然消失
+                // 不在這裡 stopCalibration()，避免校正畫面突然消失
             }
         }
     }
@@ -215,33 +219,57 @@ class FatigueDetector(private val context: Context) {
         }
     }
 
+    /**
+     * 同時負責：
+     * - 長時間大張嘴 → 哈欠（Yawn）+ 張嘴次數
+     * - 中等時間張嘴（>0.5s）→ 只算張嘴次數
+     */
     private fun detectYawn(landmarks: List<NormalizedLandmark>, now: Long): FatigueEvent? {
         val mar = calculateMAR(landmarks, LandmarkIndices.MOUTH)
         val yawnMarThreshold = currentMarThreshold * 1.2f
 
         return when {
             mar > yawnMarThreshold && !isMouthOpen -> {
+                // 嘴巴剛開始變大
                 isMouthOpen = true
                 lastMouthOpenStartTime = now
                 null
             }
             mar > yawnMarThreshold && isMouthOpen -> {
+                // 嘴巴持續張開中
                 val openDur = now - lastMouthOpenStartTime
                 if (openDur >= DEFAULT_YAWN_DURATION_THRESHOLD && mar > currentMarThreshold * 1.8f) {
+                    // 明顯長時間大張嘴：當作一次「哈欠」＋「張嘴次數」
                     yawnCount++
+                    mouthOpenCount++
+                    mouthOpenTimestamps.add(now)
                     isMouthOpen = false
                     FatigueEvent.Yawn(openDur)
                 } else null
             }
             mar <= yawnMarThreshold && isMouthOpen -> {
+                // 嘴巴關起來了，來看這段算不算事件
                 isMouthOpen = false
                 val total = now - lastMouthOpenStartTime
                 when {
+                    // 原本就會算哈欠的條件
                     total >= DEFAULT_YAWN_DURATION_THRESHOLD -> {
-                        yawnCount++; FatigueEvent.Yawn(total)
+                        yawnCount++
+                        mouthOpenCount++
+                        mouthOpenTimestamps.add(now)
+                        FatigueEvent.Yawn(total)
                     }
                     total >= DEFAULT_YAWN_MIN_DURATION && mar > currentMarThreshold * 1.5f -> {
-                        yawnCount++; FatigueEvent.Yawn(total)
+                        yawnCount++
+                        mouthOpenCount++
+                        mouthOpenTimestamps.add(now)
+                        FatigueEvent.Yawn(total)
+                    }
+                    // 沒達到哈欠，但也張嘴超過 0.5 秒 → 純張嘴事件
+                    total >= 500L -> {
+                        mouthOpenCount++
+                        mouthOpenTimestamps.add(now)
+                        null
                     }
                     else -> null
                 }
@@ -288,6 +316,8 @@ class FatigueDetector(private val context: Context) {
         lastBlinkTime = 0
         lastMinuteStartTime = System.currentTimeMillis()
         blinkTimestamps.clear()
+        mouthOpenCount = 0
+        mouthOpenTimestamps.clear()
         stopCalibration()
         isFaceDetected = false
     }
@@ -304,6 +334,8 @@ class FatigueDetector(private val context: Context) {
         lastBlinkTime = 0
         lastMinuteStartTime = System.currentTimeMillis()
         blinkTimestamps.clear()
+        mouthOpenCount = 0
+        mouthOpenTimestamps.clear()
     }
 
     private fun resetFatigueEventsAfterCalibration() {
@@ -318,6 +350,8 @@ class FatigueDetector(private val context: Context) {
         lastBlinkTime = 0
         lastMinuteStartTime = System.currentTimeMillis()
         blinkTimestamps.clear()
+        mouthOpenCount = 0
+        mouthOpenTimestamps.clear()
     }
 
     fun setDetectionParameters(
@@ -342,8 +376,19 @@ class FatigueDetector(private val context: Context) {
 
     fun getYawnCount(): Int = yawnCount
 
+    // 嘴巴張開次數
+    fun getMouthOpenCount(): Int = mouthOpenCount
+
+    fun getRecentMouthOpenCount(windowMs: Long = 60000L): Int {
+        val now = System.currentTimeMillis()
+        mouthOpenTimestamps.removeAll { now - it > windowMs }
+        return mouthOpenTimestamps.size
+    }
+
     fun getEyeClosureDuration(): Long {
-        return if (isEyeClosed && lastEyeClosureStartTime > 0) System.currentTimeMillis() - lastEyeClosureStartTime else 0L
+        return if (isEyeClosed && lastEyeClosureStartTime > 0)
+            System.currentTimeMillis() - lastEyeClosureStartTime
+        else 0L
     }
 
     fun getRecentYawnCount(windowMs: Long = 60000L): Int = yawnCount
@@ -473,6 +518,13 @@ class FatigueDetector(private val context: Context) {
     private fun euclideanDistance(p1: NormalizedLandmark, p2: NormalizedLandmark): Float {
         val dx = p1.x() - p2.x()
         val dy = p1.y() - p2.y()
+        return sqrt(dx * dx + dy * dy)
+    }
+
+    // overload for float coords（現在沒用到也沒關係，保留）
+    private fun euclideanDistance(x1: Float, y1: Float, x2: Float, y2: Float): Float {
+        val dx = x1 - x2
+        val dy = y1 - y2
         return sqrt(dx * dx + dy * dy)
     }
 }

@@ -8,6 +8,7 @@ import com.patrick.alert.FatigueAlertManager
 import com.patrick.core.FatigueDialogCallback
 import com.patrick.core.FatigueDetectionListener
 import com.patrick.core.FatigueDetectionResult
+import com.patrick.core.FatigueEvent
 import com.patrick.core.FatigueLevel
 import com.patrick.core.FatigueUiCallback
 import java.util.concurrent.CopyOnWriteArrayList
@@ -31,7 +32,7 @@ class FatigueDetectionManager(
     private val fatigueDetector = FatigueDetector(context)
     private val alertManager = FatigueAlertManager(context)
 
-    // —— 覆層：Blendshapes 打呵欠偵測 ——
+    // —— 覆層：Blendshapes 打呵欠/張嘴偵測 ——
     private val yawnDetector = YawnDetector()
     private var overlayYawnCount = 0
     private val overlayYawnTimestamps = CopyOnWriteArrayList<Long>()
@@ -60,14 +61,11 @@ class FatigueDetectionManager(
     private fun inCooldown(): Boolean = System.currentTimeMillis() < cooldownUntil
 
     // ====== 分數引擎（時間制恢復 + 事件懲罰 + 短暫鎖恢復）======
-    // ====== 分數引擎（時間制恢復 + 事件懲罰 + 短暫鎖恢復）======
-// FatigueDetectionManager.kt
-
     private object FatigueScoreEngine {
-        private const val YAWN_PENALTY = 25
+        private const val YAWN_PENALTY = 10      // 👈 張嘴/打呵欠一次 +10 分
         private const val BLINK_PENALTY = 10
 
-        // 回復參數（照你現在的就好）
+        // 回復參數
         private const val RECOVER_STEP = 1
         private const val RECOVER_PERIOD_MS = 1500L
         private const val FAST_RECOVER_STEP = 3
@@ -75,23 +73,30 @@ class FatigueDetectionManager(
 
         private const val HOLD_AFTER_YAWN_MS = 2000L
 
-        // ★ 新增常數：長閉眼時要拉到的目標分數
+        // 長閉眼時要拉到的目標分數（你設定的 70）
         private const val EYE_CLOSURE_FORCE_SCORE = 70
 
         private var score = 0
         private var lastRecoverAt: Long = 0L
         private var holdUntil: Long = 0L
 
-        fun reset() { score = 0; lastRecoverAt = 0L; holdUntil = 0L }
+        fun reset() {
+            score = 0
+            lastRecoverAt = 0L
+            holdUntil = 0L
+        }
+
         fun getScore(): Int = score
-        fun getLevel(): com.patrick.core.FatigueLevel = when {
-            score >= 61 -> com.patrick.core.FatigueLevel.WARNING
-            score >= 31 -> com.patrick.core.FatigueLevel.NOTICE
-            else -> com.patrick.core.FatigueLevel.NORMAL
+
+        fun getLevel(): FatigueLevel = when {
+            score >= 61 -> FatigueLevel.WARNING
+            score >= 31 -> FatigueLevel.NOTICE
+            else        -> FatigueLevel.NORMAL
         }
 
         fun addYawnPenalty(now: Long) {
             score = (score + YAWN_PENALTY).coerceAtMost(100)
+            // 張嘴/打呵欠後，至少這段時間不恢復
             holdUntil = kotlin.math.max(holdUntil, now + HOLD_AFTER_YAWN_MS)
         }
 
@@ -99,24 +104,31 @@ class FatigueDetectionManager(
             score = (score + BLINK_PENALTY).coerceAtMost(100)
         }
 
-        // ★ 改這裡：閉眼 ≥1s → 分數至少拉到 70（不覆蓋更高分）
+        // 閉眼 ≥ 門檻 → 分數至少拉到 70（不覆蓋更高分）
         fun addEyeClosurePenalty() {
             score = kotlin.math.max(score, EYE_CLOSURE_FORCE_SCORE)
         }
 
         fun recover(now: Long, fast: Boolean) {
             if (now < holdUntil) return
-            val (step, period) = if (fast) FAST_RECOVER_STEP to FAST_RECOVER_PERIOD_MS
-            else RECOVER_STEP to RECOVER_PERIOD_MS
-            if (lastRecoverAt == 0L) { lastRecoverAt = now; return }
+
+            val (step, period) = if (fast) {
+                FAST_RECOVER_STEP to FAST_RECOVER_PERIOD_MS
+            } else {
+                RECOVER_STEP to RECOVER_PERIOD_MS
+            }
+
+            if (lastRecoverAt == 0L) {
+                lastRecoverAt = now
+                return
+            }
+
             if (now - lastRecoverAt >= period && score > 0) {
                 score = (score - step).coerceAtLeast(0)
                 lastRecoverAt = now
             }
         }
     }
-
-
 
     private fun handleStateExit(state: DetectionState) {
         if (state == DetectionState.WARNING) {
@@ -199,17 +211,21 @@ class FatigueDetectionManager(
             // ===== 校正期間：完全不轉 NO_FACE，也不跑告警/分數 =====
             if (currentState == DetectionState.CALIBRATING) return
 
-            // 覆層：blendshapes 打呵欠偵測（jawOpen / mouthFunnel）
+            // 覆層：blendshapes 嘴巴張開偵測（jawOpen / mouthFunnel）
             try {
                 val openScore = extractMouthOpenScore(result)   // 相容層
                 if (openScore != null) {
+                    // 🔴 關鍵：這裡一定要傳 now（tsMs）
                     val yd = yawnDetector.update(openScore, now)
                     if (yd.yawnTriggered) {
                         lastYawnTriggeredFlag = true
                         overlayYawnCount += 1
                         overlayYawnTimestamps += now
-                        Log.d(TAG, "yawn(triggered): ema=%.2f base=%.2f th=%.2f"
-                            .format(yd.scoreEma, yd.baseline, yd.threshold))
+                        Log.d(
+                            TAG,
+                            "yawn(triggered): ema=%.2f base=%.2f th=%.2f"
+                                .format(yd.scoreEma, yd.baseline, yd.threshold)
+                        )
                     }
                 }
             } catch (_: Throwable) { /* 單幀異常忽略 */ }
@@ -239,16 +255,30 @@ class FatigueDetectionManager(
                 DetectionState.NO_FACE,
                 DetectionState.ERROR,
                 DetectionState.SHUTDOWN
-            )) return
+            )
+        ) return
 
         // —— 事件 → 懲罰；否則 → 按時間恢復 ——
         when {
-            getEyeClosureDuration() >= 1000L -> FatigueScoreEngine.addEyeClosurePenalty()
-            lastYawnTriggeredFlag || result.events.any { it is com.patrick.core.FatigueEvent.Yawn } -> {
-                FatigueScoreEngine.addYawnPenalty(now)           // 呵欠：+25 且鎖 3 秒不恢復
+            // ⬇ 閉眼 ≥ 1 秒：看 FatigueEvent.EyeClosure
+            result.events.any { it is FatigueEvent.EyeClosure } -> {
+                FatigueScoreEngine.addEyeClosurePenalty()
             }
-            getRecentBlinkCount(60000L) > 25 -> FatigueScoreEngine.addBlinkPenalty()
-            else -> FatigueScoreEngine.recover(now, fast = inCooldown())
+
+            // 張嘴 / 打呵欠（底層事件 or overlay 事件）：+10 分
+            lastYawnTriggeredFlag || result.events.any { it is FatigueEvent.Yawn } -> {
+                FatigueScoreEngine.addYawnPenalty(now)
+            }
+
+            // 一分鐘內眨眼太多：+10 分
+            getRecentBlinkCount(60000L) > 25 -> {
+                FatigueScoreEngine.addBlinkPenalty()
+            }
+
+            else -> {
+                // 沒有新的事件，照時間慢慢恢復
+                FatigueScoreEngine.recover(now, fast = inCooldown())
+            }
         }
         lastYawnTriggeredFlag = false
 
@@ -265,9 +295,9 @@ class FatigueDetectionManager(
         if (result.isFatigueDetected) {
             alertManager.handleFatigueDetection(result)
             when (result.fatigueLevel) {
-                FatigueLevel.NOTICE -> transitionToState(DetectionState.NOTICE)
+                FatigueLevel.NOTICE  -> transitionToState(DetectionState.NOTICE)
                 FatigueLevel.WARNING -> transitionToState(DetectionState.WARNING)
-                else -> transitionToState(DetectionState.DETECTING)
+                else                 -> transitionToState(DetectionState.DETECTING)
             }
         } else {
             transitionToState(DetectionState.DETECTING)
@@ -347,15 +377,21 @@ class FatigueDetectionManager(
 
     fun getRecentBlinkCount(windowMs: Long): Int = fatigueDetector.getRecentBlinkCount(windowMs)
 
-    // 覆寫：回傳（底層 + 覆層）打呵欠次數
+    // 覆寫：回傳（底層 + 覆層）打呵欠/張嘴 次數
     fun getYawnCount(): Int = fatigueDetector.getYawnCount() + overlayYawnCount
 
-    // 覆寫：回傳（底層 + 覆層）近窗打呵欠次數
+    // 覆寫：回傳（底層 + 覆層）近窗打呵欠/張嘴 次數
     fun getRecentYawnCount(windowMs: Long = 60000L): Int {
         val cutoff = System.currentTimeMillis() - windowMs
         overlayYawnTimestamps.removeIf { it < cutoff } // 清舊
         return fatigueDetector.getRecentYawnCount(windowMs) + overlayYawnTimestamps.count { it >= cutoff }
     }
+
+    // 嘴巴張開次數（底層統計）
+    fun getMouthOpenCount(): Int = fatigueDetector.getMouthOpenCount()
+
+    fun getRecentMouthOpenCount(windowMs: Long = 60000L): Int =
+        fatigueDetector.getRecentMouthOpenCount(windowMs)
 
     fun getEyeClosureDuration(): Long = fatigueDetector.getEyeClosureDuration()
     fun isCalibrating(): Boolean = fatigueDetector.isCalibrating()
