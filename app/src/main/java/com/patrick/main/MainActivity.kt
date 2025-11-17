@@ -50,6 +50,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+
 /** 沒有登入了 → 只剩 CALIBRATION / DETECT / HISTORY / HISTORY_DETAIL */
 private enum class AppStep { CALIBRATION, DETECT, HISTORY, HISTORY_DETAIL }
 

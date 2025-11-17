@@ -15,6 +15,9 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import android.net.Uri
+import android.content.Intent
+
 
 class FatigueViewModel(
     application: Application,
@@ -144,7 +147,51 @@ class FatigueViewModel(
         fatigueDetectionManager.resetFatigueEvents()
         fatigueUiStateManager.setWarningDialogActive(false)
         pauseScoreDecay = false
+
+        // ⭐⭐ 正確的地圖跳轉（無紅線版）⭐⭐
+        try {
+            val ctx = getApplication<Application>().applicationContext
+
+            // ---------- 1. 先試 Google Maps ----------
+            val gmapUri = Uri.parse("geo:0,0?q=休息站")
+            val gmapIntent = Intent(Intent.ACTION_VIEW, gmapUri).apply {
+                setPackage("com.google.android.apps.maps")
+                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            }
+
+            if (gmapIntent.resolveActivity(ctx.packageManager) != null) {
+                Log.e("FATIGUE_REST", "✔ 使用 Google Maps 開啟休息站")
+                ctx.startActivity(gmapIntent)
+                return
+            }
+
+            // ---------- 2. 再試一般地圖 App ----------
+            val anyMapIntent = Intent(Intent.ACTION_VIEW, gmapUri).apply {
+                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            }
+
+            if (anyMapIntent.resolveActivity(ctx.packageManager) != null) {
+                Log.e("FATIGUE_REST", "✔ 使用其他地圖 App 開啟休息站")
+                ctx.startActivity(anyMapIntent)
+                return
+            }
+
+            // ---------- 3. 最後用瀏覽器 ----------
+            val webIntent = Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse("https://www.google.com/maps/search/休息站/")
+            ).apply {
+                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            }
+
+            Log.e("FATIGUE_REST", "✔ 使用瀏覽器開啟休息站")
+            ctx.startActivity(webIntent)
+
+        } catch (e: Exception) {
+            Log.e("FATIGUE_REST", "❌ 地圖跳轉失敗: ${e.message}")
+        }
     }
+
 
     fun generateDebugReport(): String = try {
         debugger.generateDebugReport(

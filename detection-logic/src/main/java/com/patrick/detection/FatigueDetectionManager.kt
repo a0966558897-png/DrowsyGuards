@@ -13,6 +13,9 @@ import com.patrick.core.FatigueLevel
 import com.patrick.core.FatigueUiCallback
 import java.util.concurrent.CopyOnWriteArrayList
 import kotlin.math.max
+import android.content.Intent
+import android.net.Uri
+
 
 /**
  * 疲勞檢測管理器
@@ -129,6 +132,58 @@ class FatigueDetectionManager(
             }
         }
     }
+    private fun openNearestRestStop(context: Context) {
+        Log.e("FATIGUE_REST", "🧭 openNearestRestStop() 被呼叫")
+
+        try {
+            val uri = Uri.parse("geo:0,0?q=休息站")
+            val intent = Intent(Intent.ACTION_VIEW, uri).apply {
+                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                addCategory(Intent.CATEGORY_DEFAULT)
+            }
+
+            // 優先 Google Maps
+            val gmapIntent = Intent(Intent.ACTION_VIEW, uri).apply {
+                setPackage("com.google.android.apps.maps")
+                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            }
+
+            val pm = context.packageManager
+
+            // 如果有 Google Maps
+            if (gmapIntent.resolveActivity(pm) != null) {
+                Log.e("FATIGUE_REST", "✔ 開啟 Google Maps")
+                context.startActivity(gmapIntent)
+                return
+            }
+
+            // 其他地圖
+            if (intent.resolveActivity(pm) != null) {
+                Log.e("FATIGUE_REST", "✔ 開啟一般地圖 APP")
+                context.startActivity(intent)
+                return
+            }
+
+            // 最後 fallback → 用 Chrome 開 Google 地圖搜尋
+            val webIntent = Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse("https://www.google.com/maps/search/休息站/")
+            ).apply {
+                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            }
+
+            Log.e("FATIGUE_REST", "✔ Fallback → 用瀏覽器開 Google Maps")
+            context.startActivity(webIntent)
+
+        } catch (e: Exception) {
+            Log.e("FATIGUE_REST", "❌ 開啟地圖失敗: ${e.message}", e)
+        }
+    }
+
+
+
+
+
 
     private fun handleStateExit(state: DetectionState) {
         if (state == DetectionState.WARNING) {
@@ -179,8 +234,13 @@ class FatigueDetectionManager(
             override fun onUserRequestedRest() {
                 alertManager.stopAllAlerts()
                 uiCallback?.onUserRequestedRest()
+
+                // ⭐ 自動跳到 Google Maps → 最近的休息站
+                openNearestRestStop(context)
+
                 transitionToState(DetectionState.REST_MODE)
             }
+
         })
         uiCallback?.let { alertManager.setUiCallback(it) }
     }
@@ -426,19 +486,40 @@ class FatigueDetectionManager(
     }
 
     // 從 result 擷取嘴巴張開分數：max(jawOpen, mouthFunnel)
+// ======== 嘴巴張開（MAR）偵測 ========
     private fun extractMouthOpenScore(result: FaceLandmarkerResult): Float? {
-        val blendshapes = getBlendshapesCompat(result) ?: return null
-        if (blendshapes.isEmpty()) return null
-        val cats = blendshapes[0].categories() ?: return null
-        var jawOpen = 0f
-        var mouthFunnel = 0f
-        for (c in cats) {
-            when (c.categoryName()) {
-                "jawOpen"     -> jawOpen = c.score()
-                "mouthFunnel" -> mouthFunnel = c.score()
-            }
-        }
-        val open = max(jawOpen, mouthFunnel)
-        return if (open > 0f) open else null
+        val landmarks = result.faceLandmarks() ?: return null
+        if (landmarks.isEmpty()) return null
+
+        val lm = landmarks[0]  // 第一張臉
+
+        // 確保 landmark 點數夠
+        if (lm.size <= 308) return null
+
+        // 嘴巴 MediaPipe 固定 index
+        val topLip = lm[13]
+        val bottomLip = lm[14]
+        val leftLip = lm[78]
+        val rightLip = lm[308]
+
+        // 計算 MAR
+        val vertical = distance(topLip.x(), topLip.y(), bottomLip.x(), bottomLip.y())
+        val horizontal = distance(leftLip.x(), leftLip.y(), rightLip.x(), rightLip.y())
+
+        if (horizontal == 0f) return null
+
+        val mar = vertical / horizontal
+
+        // 直接回傳 raw MAR（最準）
+        return mar
     }
+
+    // 工具函式
+    private fun distance(x1: Float, y1: Float, x2: Float, y2: Float): Float {
+        val dx = x1 - x2
+        val dy = y1 - y2
+        return kotlin.math.sqrt(dx * dx + dy * dy)
+    }
+
+
 }

@@ -8,5 +8,6 @@ import com.patrick.detection.FatigueDetectionManager
  */
 fun FatigueDetectionManager.setProcessingRateFps(fps: Int) {
     val clamped = fps.coerceIn(1, 60)
+
     this.setMinProcessIntervalMs(1000L / clamped)
 }

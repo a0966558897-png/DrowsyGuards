@@ -1,26 +1,24 @@
 package com.patrick.alert
 
 import android.content.Context
-import android.media.MediaPlayer
+import android.media.AudioManager
+import android.media.ToneGenerator
 import android.util.Log
 import com.patrick.core.FatigueDetectionResult
-import com.patrick.core.FatigueDialogCallback
 import com.patrick.core.FatigueLevel
+import com.patrick.core.FatigueDialogCallback
 import com.patrick.core.FatigueUiCallback
 import com.patrick.core.PerformanceMonitor
 
 class FatigueAlertManager(private val context: Context) {
-
-    companion object {
-        private const val TAG = "FatigueAlertManager"
-    }
 
     private val performanceMonitor = PerformanceMonitor.getInstance(context)
 
     private var uiCallback: FatigueUiCallback? = null
     private var dialogCallback: FatigueDialogCallback? = null
 
-    private var mediaPlayer: MediaPlayer? = null
+    // ---- 系統警示聲 ----
+    private var tone: ToneGenerator? = null
     private var isPlaying = false
 
     fun setUiCallback(callback: FatigueUiCallback) {
@@ -31,54 +29,44 @@ class FatigueAlertManager(private val context: Context) {
         dialogCallback = callback
     }
 
-    // ⭐ 不用 R，改用 resource identifier
-    private fun playWarningSound() {
+    private fun playWarningBeep() {
         if (isPlaying) return
 
-        try { mediaPlayer?.release() } catch (_: Exception) {}
+        try {
+            tone = ToneGenerator(AudioManager.STREAM_ALARM, 100)
+            tone?.startTone(ToneGenerator.TONE_CDMA_ALERT_CALL_GUARD, 800) // 0.8 秒
+            isPlaying = true
 
-        // ⭐ 用字串抓 raw 資源，不用跨模組 import R
-        val resId = context.resources.getIdentifier("emergency", "raw", context.packageName)
+            // 0.9 秒後重置
+            android.os.Handler(android.os.Looper.getMainLooper()).postDelayed({
+                isPlaying = false
+            }, 900)
 
-        if (resId == 0) {
-            Log.e(TAG, "找不到 raw/emergency.wav")
-            return
-        }
-
-        mediaPlayer = MediaPlayer.create(context, resId)
-        mediaPlayer?.isLooping = false
-        mediaPlayer?.start()
-
-        isPlaying = true
-
-        mediaPlayer?.setOnCompletionListener {
+        } catch (e: Exception) {
+            Log.e("FatigueAlert", "Tone 播放失敗", e)
             isPlaying = false
         }
-
-        Log.d(TAG, "正在播放 emergency.wav")
     }
 
-    private fun stopSound() {
-        try {
-            mediaPlayer?.stop()
-            mediaPlayer?.release()
-        } catch (_: Exception) {}
-
-        mediaPlayer = null
+    private fun stopBeep() {
+        tone?.release()
+        tone = null
         isPlaying = false
     }
 
     fun onUserAcknowledged() {
-        stopSound()
+        stopBeep()
         dialogCallback?.onUserAcknowledged()
         uiCallback?.setWarningDialogActive(false)
     }
 
     fun onUserRequestedRest() {
-        stopSound()
+        Log.e("FATIGUE_REST", "⚠ FatigueAlertManager.onUserRequestedRest() 被按到了")
+        stopBeep()
         dialogCallback?.onUserRequestedRest()
         uiCallback?.setWarningDialogActive(false)
     }
+
 
     fun handleFatigueDetection(result: FatigueDetectionResult) {
         if (!result.isFatigueDetected) return
@@ -87,16 +75,17 @@ class FatigueAlertManager(private val context: Context) {
             FatigueLevel.NOTICE -> {
                 uiCallback?.onNoticeFatigue()
             }
+
             FatigueLevel.WARNING -> {
                 uiCallback?.onWarningFatigue()
-                playWarningSound()
+                playWarningBeep()   // ⭐ 在 WARNING 播警示音
             }
             else -> {}
         }
     }
 
     fun stopAllAlerts() {
-        stopSound()
+        stopBeep()
         uiCallback?.setWarningDialogActive(false)
     }
 

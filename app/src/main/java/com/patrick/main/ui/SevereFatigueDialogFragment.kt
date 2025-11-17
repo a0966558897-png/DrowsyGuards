@@ -1,11 +1,14 @@
 package com.patrick.main.ui
 
 import android.app.Dialog
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class SevereFatigueDialogFragment : DialogFragment() {
+
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return MaterialAlertDialogBuilder(requireContext())
             .setTitle("疲勞偵測警示")
@@ -14,10 +17,17 @@ class SevereFatigueDialogFragment : DialogFragment() {
                 dialog.dismiss()
             }
             .setNegativeButton("我會找地方休息") { dialog, _ ->
-                // 可由 CameraFragment 監聽 onDismiss 進行狀態切換
+                openMapsToNearestStop()
                 dialog.dismiss()
             }
             .setCancelable(false)
             .create()
+    }
+
+    private fun openMapsToNearestStop() {
+        val uri = Uri.parse("geo:0,0?q=加油站")
+        val intent = Intent(Intent.ACTION_VIEW, uri)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        startActivity(intent)
     }
 }
