@@ -99,7 +99,8 @@ fun MainApp() {
         AppStep.DETECT -> DetectScreen(
             vm = vm,
             onEndRun = { step = AppStep.HISTORY },              // 仍可導到舊歷史（保留）
-            onBackToCalibration = { step = AppStep.CALIBRATION } // 回校正
+            onBackToCalibration = { step = AppStep.CALIBRATION },// 回校正
+            onHistory = { step = AppStep.HISTORY }// 按底部「歷史」 → 歷史
         )
         AppStep.HISTORY -> HistoryScreen(
             onBack = { step = AppStep.CALIBRATION }, // 返回 → 校正
@@ -180,6 +181,7 @@ private fun DetectScreen(
     vm: FatigueScreenViewModel,
     onEndRun: () -> Unit,
     onBackToCalibration: () -> Unit,          // 回校正
+    onHistory: () -> Unit,
 ) {
     val appContext = LocalContext.current.applicationContext
     val lifecycleOwner = LocalLifecycleOwner.current
@@ -259,7 +261,8 @@ private fun DetectScreen(
                 onRecalibrate = {
                     vm.stopDetection()
                     onBackToCalibration()
-                }
+                },
+                onHistoryClick = { onHistory() }
             )
         }
     }

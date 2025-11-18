@@ -36,6 +36,7 @@ fun FatigueMainScreen(
     statusText: String = "持續偵測中…",
     onUserAcknowledged: () -> Unit = {},
     onUserRequestedRest: () -> Unit = {},
+    onHistoryClick: () -> Unit = {},
     uiEvent: SharedFlow<Any>? = null,
 
     // 額外數據
@@ -116,7 +117,7 @@ fun FatigueMainScreen(
                     Spacer(modifier = Modifier.height(4.dp))
                     ExtraPagesBar(
                         onRecalibrateClick = onRecalibrate,
-                        onHistoryClick = { openByNames(ctx, "HistoryActivity") }
+                        onHistoryClick = onHistoryClick
                     )
                 }
             }
@@ -203,27 +204,6 @@ private fun ExtraPagesBar(
             )
         }
 
-        // 圖表
-        Button(
-            onClick = { openByNames(ctx, "ChartActivity") },
-            colors = btnColors,
-            shape = shape,
-            elevation = ButtonDefaults.buttonElevation(0.dp, 0.dp, 0.dp, 0.dp, 0.dp),
-            contentPadding = PaddingValues(vertical = 8.dp),
-            modifier = Modifier
-                .weight(1f)
-                .height(52.dp)
-                .clip(shape)
-                .border(BorderStroke(1.dp, Color(0xFFE5E7EB)), shape)
-        ) {
-            Text(
-                "圖表",
-                style = labelStyle,
-                maxLines = 1,
-                softWrap = false,
-                overflow = TextOverflow.Ellipsis
-            )
-        }
 
         // 設定
         Button(
