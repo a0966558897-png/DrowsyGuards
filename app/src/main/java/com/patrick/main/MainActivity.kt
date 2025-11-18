@@ -332,7 +332,6 @@ private fun HistoryItem(r: RunRecord, onClick: () -> Unit) {
             Text("疲勞分數：${r.avgScore}")
             Text("眨眼頻率：${"%.2f".format(r.blinkPerMin)} /分")
             Text("哈欠次數：${r.yawnCount}")
-            Text("閉眼時間：${"%.2f".format(r.eyeClosureSec)} 秒")
         }
     }
 }
@@ -370,7 +369,6 @@ private fun HistoryDetailScreen(
             Text("疲勞分數：${record.avgScore}")
             Text("眨眼頻率：${"%.2f".format(record.blinkPerMin)} /分")
             Text("哈欠次數：${record.yawnCount}")
-            Text("閉眼總時間：${"%.2f".format(record.eyeClosureSec)} 秒")
         }
     }
 }
